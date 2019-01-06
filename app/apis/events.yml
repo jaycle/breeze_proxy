@@ -1,0 +1,76 @@
+Add users and their roles to events in breeze CMS
+---
+parameters:
+- name: Event Payload
+  in: body
+  description: Full payload of events and breeze meta info
+  required: true
+  schema:
+    type: object
+    properties:
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      breezeInfo:
+        $ref: '#/definitions/BreezeInfo'
+definitions:
+  Event:
+    type: object
+    properties:
+      date:
+        type: string
+        description: Date in MMM D, YYYY format
+        example: Jan 1, 2019
+      assignments:
+        type: array
+        items:
+          type: object
+          properties:
+            role:
+              type: string
+              example: Organizer
+            assignee:
+              type: string
+              example: Jannette Doe
+  BreezeInfo:
+    type: object
+    properties:
+      url:
+        type: string
+        example: http://church.breeze.com
+      key:
+        type: string
+        description: Api key for your breeze account
+        example: 'abcdef0123456789fedcba9876543210'
+  ItemsAdded:
+    type: object
+    properties:
+      date:
+        type: string
+      assignee:
+        type: string
+      role:
+        type: string
+  ItemsNotAdded:
+    allOf:
+      - $ref: '#/definitions/ItemsAdded'
+      - type: object
+        properties:
+          error:
+            type: string
+
+responses:
+  200:
+    description: Request was well-formed. Check body for any specific errors.
+    schema:
+      type: object
+      properties:
+        itemsAdded:
+          type: array
+          items:
+            $ref: '#/definitions/ItemsAdded'
+        itemsNotAdded:
+          type: array
+          items:
+            $ref: '#/definitions/ItemsNotAdded'
