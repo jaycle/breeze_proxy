@@ -1,2 +1,3 @@
-$Env:FLASK_APP = ".\app.py"
+$Env:FLASK_APP = ".\app"
+$Env:FLASK_DEBUG = "1"
 flask run
