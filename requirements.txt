@@ -16,7 +16,7 @@ jsonschema==2.6.0
 lazy-object-proxy==1.3.1
 MarkupSafe==1.1.0
 mccabe==0.6.1
-mistune==0.8.4
+mistune==2.0.3
 -e git+https://github.com/jaycle/pyBreezeChMS.git@94ad9cdde6f56207a3e3f6bbaecabe2f90346edf#egg=pyBreezeChMS
 pylint==2.2.2
 python-dateutil==2.7.5
